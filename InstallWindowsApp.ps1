@@ -4,7 +4,6 @@ $LogLocation = "C:\temp\Windows-App-Install-Logs"
 
 # Install Windows App via Winget
 function InstallWindowsAppMSIX {
-
     try { 
         # Install Windows App via MSIX
         Add-AppPackage -Path $WindowsAppMSIXDLLocation
