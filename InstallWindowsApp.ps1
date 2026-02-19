@@ -1,6 +1,6 @@
 # Global Variables
 $WindowsAppMSIXDLLocation = "C:\temp\WindowsApp.msix"
-$LogLocation = "C:\temp\Windows-App-Install-Logs"
+$LogLocation = "C:\temp\Windows-App-Install-Logs\"
 
 # Install Windows App via Winget
 function InstallWindowsAppMSIX {
