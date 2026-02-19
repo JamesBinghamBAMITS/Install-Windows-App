@@ -3,8 +3,8 @@ $GitAppID = "Microsoft.Git"
 $InstalledApps = winget list --id $GitAppID
 $GitWebURL = "https://github.com/JamesBinghamBAMITS/Install-Windows-App/archive/refs/heads/main.zip"
 $ZippedRepoLocation = "C:\temp\Get_installWindowsApp\Install-Windows-App.zip"
-$RepoLocation = "C:\temp\Get_installWindowsApp\Install-Windows-App"
-$LogLocation  = "C:\temp\Get_installWindowsApp\Logs"
+$RepoLocation = "C:\temp\Get_installWindowsApp\Install-Windows-App\"
+$LogLocation  = "C:\temp\Get_installWindowsApp\Logs\"
 
 # Install Git
 function InstallGit {
@@ -17,7 +17,7 @@ function InstallGit {
         }
         Catch {
             # Error handling
-            Write-Output $_.Exception.Message | Out-File $LogLocation += "InstallGit.log"
+            Write-Output $_.Exception.Message | Out-File $LogLocation + "InstallGit.log"
         }
     }
 }
@@ -30,7 +30,8 @@ function GetRepo {
     Catch {
         # Error handling
         Write-Output "An error has occurred please see $LogLocation GetRepo.log"
-        Write-Output $_.Exception.Message | Out-File $LogLocation += "GetRepo.log"
+        $FullLogPath = Join-Path -Path $LogLocation -ChildPath "GetRepo.log"
+        $_.Exception.Message | Out-File -FilePath $FullLogPath -Append
     }   
 }
 
