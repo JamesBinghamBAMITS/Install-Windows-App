@@ -2,7 +2,8 @@
 $GitAppID = "Microsoft.Git"
 $InstalledApps = winget list --id $GitAppID
 $GitWebURL = "https://github.com/JamesBinghamBAMITS/Install-Windows-App/archive/refs/heads/main.zip"
-$RepoLocation = "C:\temp\Get_installWindowsApp\Install-Windows-App.zip"
+$ZippedRepoLocation = "C:\temp\Get_installWindowsApp\Install-Windows-App.zip"
+$RepoLocation = "C:\temp\Get_installWindowsApp\Install-Windows-App"
 $LogLocation  = "C:\temp\Get_installWindowsApp\Logs"
 
 # Install Git
@@ -24,7 +25,7 @@ function InstallGit {
 # Get repo
 function GetRepo {
     try{
-        Invoke-WebRequest -Uri $GitWebURL -OutFile $RepoLocation
+        Invoke-WebRequest -Uri $GitWebURL -OutFile $ZippedRepoLocation
     }
     Catch {
         # Error handling
@@ -33,9 +34,10 @@ function GetRepo {
     }   
 }
 
+# Extract Repo
 function ExtractRepo {
     try {
-        Expand-Archive -Path C:\SOURCE\PATH\TO\YOUR\ZIPPED.zip -DestinationPath C:\DESTINATION\PATH\UNZIP
+        Expand-Archive -Path $ZippedRepoLocation -DestinationPath $RepoLocation
     }
     Catch {
         # Error handling
